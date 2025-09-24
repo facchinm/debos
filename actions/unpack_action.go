@@ -34,6 +34,7 @@ package actions
 
 import (
 	"fmt"
+	"path"
 	"github.com/go-debos/debos"
 )
 
@@ -94,6 +95,8 @@ func (pf *UnpackAction) Run(context *debos.DebosContext) error {
 			return err
 		}
 	}
+
+	context.ImageMntDir = path.Join(context.Scratchdir, "mnt")
 
 	return archive.Unpack(context.Rootdir)
 }
